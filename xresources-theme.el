@@ -67,7 +67,7 @@
    `(header-line ((t (:foreground ,yellow
                                   :background ,background
                                   :box (:line-width -1 :style released-button)))))
-   `(highlight ((t (:background ,background))))
+   `(highlight ((t (:background ,green))))
    `(success ((t (:foreground ,green :weight bold))))
    `(warning ((t (:foreground ,red :weight bold))))
 
@@ -354,9 +354,11 @@
    `(helm-mu-contacts-name-face ((t (:foreground ,foreground :background ,background))))
 
    ;; hl-line-mode
-   `(hl-line-face ((t (:background ,background))
+   `(hl-line-face ((t (:background ,green))
+                   (t (:foreground ,white))
                    (t :weight bold)))
-   `(hl-line ((t (:background ,background)) ; old emacsen
+   `(hl-line ((t (:background ,green)) ; old emacsen
+              (t (:foreground ,background))
               (t :weight bold)))
 
    ;; ido-mode
