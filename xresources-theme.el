@@ -24,13 +24,17 @@
 
 ;;; Commentary:
 
-;; Use the colors defined in your .Xresources as your emacs theme
+;; Use the colors defined in your .Xresources as your Emacs theme
 
 ;;; Code:
 
+;; Manual Xrdb finding--thanks, Inspired_Blue on StackExchange
 (defun xresources-theme-color (name)
   "Read the color NAME (e.g. color5) from the X resources."
-  (x-get-resource name ""))
+  (shell-command-to-string (format
+                "cat /home/stacks/.Xresources | grep \"\.%s\" | awk '{print $2}' | tr -d \"\\n\""
+                   (concat "*\\(.*\\)" name ":")))
+  )
 
 (deftheme xresources "~/.Xresources as a theme")
 
@@ -67,7 +71,7 @@
    `(header-line ((t (:foreground ,yellow
                                   :background ,background
                                   :box (:line-width -1 :style released-button)))))
-   `(highlight ((t (:background ,green))))
+   `(highlight ((t (:background ,background))))
    `(success ((t (:foreground ,green :weight bold))))
    `(warning ((t (:foreground ,red :weight bold))))
 
@@ -358,7 +362,7 @@
                    (t (:foreground ,white))
                    (t :weight bold)))
    `(hl-line ((t (:background ,green)) ; old emacsen
-              (t (:foreground ,background))
+              (t (:foreground ,white))
               (t :weight bold)))
 
    ;; ido-mode
